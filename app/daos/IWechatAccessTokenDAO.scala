@@ -55,7 +55,7 @@ class WechatAccessTokenDAO @Inject()(
           Failure[Unit](new Exception("Wechat異常或網路異常"))
         },
         tokenInstance =>{
-          cacheSyncApi.set("wechat_access_token",tokenInstance.access_token,7000 second)
+          cacheSyncApi.set("wechat_access_token",tokenInstance.access_token,7000 seconds)
           Success[Unit](println(""))
         }
       )

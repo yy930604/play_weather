@@ -1,0 +1,22 @@
+version: '3'
+services:
+  cv-mongo:
+    image: mongo:3.4
+    container_name: cv-mongo.pri
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./cv-mongo/data:/data/db
+  cv-redis:
+    image: redis:3.2.10
+    container_name: cv-redis.pri
+    command: "redis-server --appendonly yes"    
+  cv-api:
+    image: weather_wechat/scala_play
+    container_name: cv-api.pri
+    ports:
+      - 9000:80
+    command: /opt/cv-api-0.0.1/bin/cv-api -Dplay.http.secret.key=abcdefghijk -Dhttp.port=80
+    depends_on:
+      - "cv-redis"
+      - "cv-mongo"

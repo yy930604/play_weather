@@ -1,0 +1,21 @@
+FROM ysihaoy/scala-play:2.12.3-2.6.2-sbt-0.13.15 as builder
+
+# caching dependencies
+COPY ["build.sbt", "/tmp/build/"]
+COPY ["project/plugins.sbt", "project/build.properties", "/tmp/build/project/"]
+RUN cd /tmp/build && \
+ sbt compile && \
+ sbt test:compile && \
+ rm -rf /tmp/build
+ 
+# copy code
+ADD . /root/app/
+WORKDIR /root/app
+RUN sbt compile && sbt test:compile && sbt dist
+
+FROM openjdk:8u151
+COPY --from=builder /root/app/target/universal/cv-api-0.0.1.zip /opt/
+WORKDIR /opt/
+RUN unzip ./cv-api-0.0.1.zip ; \
+ chmod +x cv-api-0.0.1/bin/cv-api
+CMD /opt/cv-api-0.0.1/bin/cv-api -Dplay.http.secret.key=abcdefghijk -Dhttp.port=80

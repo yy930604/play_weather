@@ -1,7 +1,7 @@
 import com.google.inject.AbstractModule
 import java.time.Clock
 
-import daos.{IWechatAccessTokenDAO, WechatAccessTokenDAO}
+import daos.{IImageDAO, IWechatAccessTokenDAO, ImageDAO, WechatAccessTokenDAO}
 import services._
 
 /**
@@ -28,6 +28,7 @@ class Module extends AbstractModule {
     bind(classOf[ITextMesaageService]).to(classOf[TextMessageService])
     bind(classOf[IImageMessageService]).to(classOf[ImageMessageService])
     bind(classOf[ISubscribeEventService]).to(classOf[SubscribeEventService])
+    bind(classOf[IImageDAO]).to(classOf[ImageDAO])
 //    bind(classOf[IClickEventService]).to(classOf[ClickEventService])
 
 

@@ -63,7 +63,7 @@ class TextMessageService @Inject()(
              to_user_name = receiveTextMessage.from_user_name,
              from_user_name = receiveTextMessage.to_user_name,
              create_time = ZonedDateTime.now(ZoneOffset.UTC).toEpochSecond,
-             content = "亲，我是傲娇鬼，我只认识地名哦，啦啦啦啦"
+             content = "亲，我只认识地名哦。"
            )
          }
        }

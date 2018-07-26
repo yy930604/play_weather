@@ -24,5 +24,11 @@ libraryDependencies ++= Seq( jdbc ,
   "org.jsoup" % "jsoup" % "1.11.2",             //play json
   "com.typesafe.play" %% "play-json" % "2.6.7" )// play json)
 
+libraryDependencies ++= Seq(
+  "org.mongodb.scala" %% "mongo-scala-driver" % "2.2.0",
+  "com.amazonaws" % "aws-java-sdk-s3" % "1.11.258",
+  "ai.x" %% "play-json-extensions" % "0.10.0"
+)
+
 
       
